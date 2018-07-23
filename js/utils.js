@@ -89,6 +89,28 @@ var utils = {
         return pattern.test(mobile);
     },
     /**
+     * 检测性别格式
+     */
+    checkSex(val){
+        if (!val) {
+            return false;
+        }
+        var reg= /^['男'|'女']$/;
+        var flag = reg.test(val);
+        return flag;
+    },
+    /**
+     * 检测年龄
+     */
+    checkAge(val){
+        if (!val) {
+            return false;
+        }
+        var reg= /^\+?[1-9][0-9]*$/;
+        var flag = reg.test(val);
+        return flag;
+    },
+    /**
      * 检测邮箱格式是否正确
      */
     checkEmail(email){

@@ -14,7 +14,7 @@ var vm = new Vue({
         user_age: '',
         user_phone: '',
         user_industry: '',
-        status: '',
+        success: false,
     },
     computed: {
         easyQuesList: function () {
@@ -51,6 +51,7 @@ var vm = new Vue({
             let p = this.curPage - 1 < 1 ? 1 : this.curPage - 1;
 
             if(p === 5 && this.checkAllFalse()) {
+                // 如果当前是提交信息页面 而且前三题为否
                 this.curQues = easyLen;
                 this.showPage(3)
             } else {
@@ -58,7 +59,7 @@ var vm = new Vue({
             }
         },
         showPageNext: function() {
-            let p = this.curPage + 1 > 8 ? 8 : this.curPage + 1;
+            let p = this.curPage + 1 > 9 ? 9 : this.curPage + 1;
             this.showPage(p);
         },
         showQuesPrev: function (id) {
@@ -105,10 +106,11 @@ var vm = new Vue({
                 console.log(res);
                 let data = res.data;
                 if(data.errCode == 0) {
-                    this.showPage(7)
+                    this.success = true;
                 } else {
-                    console.log(data.msg)
+                    this.success = false;
                 }
+                this.showPage(7)
             }).catch(error => console.log(error))
         },
         checkAllFalse: function () {
@@ -121,12 +123,12 @@ var vm = new Vue({
                 utils.toast("姓名格式有问题");
                 return false;
             }
-            if(!utils.checkEmpty(this.user_sex)) {
-                utils.toast("请填写性别");
+            if(!utils.checkSex(this.user_sex)) {
+                utils.toast("请填写正确的性别");
                 return false;
             }
-            if(!utils.checkEmpty(this.user_age)) {
-                utils.toast("请填写年龄");
+            if(!utils.checkAge(this.user_age)) {
+                utils.toast("请填写正确的年龄");
                 return false;
             }
             if(!utils.checkTel(this.user_phone)) {
