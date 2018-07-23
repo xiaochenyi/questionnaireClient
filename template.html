@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>模板</title>
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="app">
+        <div v-if="pst.page1" id="page1" class="page">
+            <div class="button" @click="showPage(2)"><span>开始测试</span></div>
+        </div>
+
+        <div v-if="pst.page2" id="page2" class="page">
+            <div class="back" @click="showPagePrev"></div>
+            <div class="mid-box see-box">
+                <h3>请先使用现场3D设备</h3>
+                <p class="p1">观赏裸眼3D内容</p>
+                <p class="p2">观看好了吗？</p>
+                <span class="btn" @click="showPageNext">好了</span>
+            </div>
+        </div>
+
+        <div v-if="pst.page3 && (item.id == curQues)" class="page" v-for="(item, index) in easyQuesList">
+            <div class="back" @click="showQuesPrev(item.id)"></div>
+            <div class="mid-box ques-box">
+                <div class="serial">0{{item.id}}</div>
+                <h3>{{item.question_title}}</h3>
+                <div class="align">
+                    <span class="btn" v-bind:class="{ 'on': item.picked===itmn }"  v-for="itmn of item.question_answer">{{itmn}}
+                        <input type="radio" :value="itmn" v-model="item.picked">
+                    </span>
+                </div>
+                <div class="nextBtn" v-if="item.picked" @click="showQuesNext(item)"></div>
+            </div>
+        </div>
+
+        <div v-if="pst.page4" id="page4" class="page">
+            <div class="mid-box continue-box align">
+                <h3>哇！你是天选之人</h3>
+                <p class="p1">再回答几个问题</p>
+                <p class="p2">获取我们特别准备的礼品！</p>
+                <img src="images/gift_icon.png">
+                <span class="btn" @click="showPageNext">继续</span>
+            </div>
+        </div>
+
+
+        <div v-if="pst.page5 && (item.id == curQues)" id="page5" class="page" v-for="(item, index) in highQuesList">
+            <div class="back" v-if="index != 0" @click="showQuesPrev(item.id)"></div>
+            <div class="mid-box ques-box">
+                <div class="serial">0{{item.id}}</div>
+                <h3>{{item.question_title}}</h3>
+                <div class="align">
+                    <span class="btn" v-bind:class="{ 'on': item.picked===itmn }"  v-for="itmn of item.question_answer">{{itmn}}
+                        <input type="radio" :value="itmn" v-model="item.picked">
+                    </span>
+                </div>
+                <div class="nextBtn" v-if="item.picked" @click="showQuesNext(item)"></div>
+            </div>
+        </div>
+
+
+        <div v-if="pst.page6" id="page6" class="page">
+            <div class="back" @click="showPagePrev"></div>
+            <div class="mid-box info-box align">
+                <div v-if="!status">
+                    <h3>填写以下信息查看结果<br>并领取奖品</h3>
+                    <input type="text" placeholder="姓名" v-model="user_name">
+                    <input type="text" placeholder="性别" v-model="user_sex">
+                    <input type="text" placeholder="年龄" v-model="user_age">
+                    <input type="text" placeholder="联系方式" v-model="user_phone">
+                    <input type="text" placeholder="行业" v-model="user_industry">
+                    <span class="btn" @click="showRst">提交</span>
+                </div>
+                <div v-else class="res-status">
+                    {{status}}
+                </div>
+            </div>
+        </div>
+
+        <div v-if="pst.page7" id="page7" class="page">
+            <div class="mid-box res-box align">
+                <img src="images/cartoon.png">
+                <h3>你能够洞察1200W光年后的未来</h3>
+                <p class="p1">你具有30%诸葛亮的眼光</p>
+                <p class="p2">以及70%钢铁侠的速度</p>
+                <span class="btn" @click="showPageNext">去分享</span>
+            </div>
+        </div>
+
+        <div v-if="pst.page8" id="page8" class="page">
+            <div class="mid-box share-box align">
+                <img src="images/share.png" class="shareImg">
+                <img src="images/moon.png" class="moon">
+            </div>
+        </div>
+
+    </div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>

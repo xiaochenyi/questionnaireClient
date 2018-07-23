@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <div v-if="pst.page1">
+        <h1>首页</h1>
+        <button @click="showPage(2)">开始测试</button>
+    </div>
+
+    <div v-if="pst.page2">
+        <div class="back" @click="showPagePrev">返回</div>
+        <h1>观看好了吗</h1>
+        <button @click="showPageNext">好了</button>
+    </div>
+
+
+    <div v-if="pst.page3" v-for="(item, index) in easyQuesList" @click="showQuesNext(item)">
+        <div v-if="item.id == curQues">
+            <div class="back" @click="showQuesPrev(item.id)">返回</div>
+            <h1>0{{item.id}}: {{item.question_title}}</h1>
+            <h2>{{item.question_title}}</h2>
+
+            <div v-for="itmn of item.question_answer">
+                <input type="radio" :id="itmn" :value="itmn" v-model="item.picked">
+                <label :for="itmn">{{itmn}}</label>
+            </div>
+
+            <!--<span @click="showQuesNext(item.id)">{{item.question_answer}}</span>-->
+        </div>
+    </div>
+
+    <div v-if="pst.page4">
+        <h1>哇！你是天选之人，<br>
+            再回答几个问题
+            获取我们特别的礼品！！！
+        </h1>
+        <button @click="showPageNext">继续</button>
+    </div>
+
+    <div v-if="pst.page5" v-for="(item, index) in highQuesList" @click="showQuesNext(item)">
+        <div v-if="item.id == curQues">
+            <div class="back" v-if="index != 0" @click="showQuesPrev(item.id)">返回</div>
+            <h1>0{{item.id}}: {{item.question_title}}</h1>
+            <h2>{{item.question_title}}</h2>
+            <div v-for="itmn of item.question_answer">
+                <input type="radio" :id="itmn" :value="itmn" v-model="item.picked">
+                <label :for="itmn">{{itmn}}</label>
+            </div>
+            <!--<span>{{item.question_answer}}</span>-->
+        </div>
+    </div>
+
+    <div v-if="pst.page6">
+        <div class="back" @click="showPagePrev">返回</div>
+        <h1>请填写个人信息</h1>
+        <p>填写完个人信息页可以领取奖品</p>
+        <button @click="showRst">提交</button>
+    </div>
+
+    <div v-if="pst.page7">
+        结果页：
+        你是天玄之人
+        我们将稍后跟你联系
+        <button @click="showPageNext">点击分享</button>
+    </div>
+
+    <div v-if="pst.page8">
+        一张图片
+    </div>
+
+</div>
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
