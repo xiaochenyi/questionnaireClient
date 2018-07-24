@@ -114,9 +114,19 @@ var vm = new Vue({
             }).catch(error => console.log(error))
         },
         checkAllFalse: function () {
-            return this.easyQuesList.every(function (item) {
-                return (item.picked === '否')
-            })
+            // 全否
+            // return this.easyQuesList.every(function (item) {
+            //     return (item.picked === '否')
+            // })
+            let num = 0;
+            this.easyQuesList.forEach(function (item) {
+                if(item.picked === '否') num++;
+            });
+            if(num >= 3) {
+                return true;
+            } else {
+                return false;
+            }
         },
         check: function () {
             if(!utils.checkName(this.user_name)) {
@@ -124,7 +134,7 @@ var vm = new Vue({
                 return false;
             }
             if(!utils.checkSex(this.user_sex)) {
-                utils.toast("请填写正确的性别");
+                utils.toast("请选择性别");
                 return false;
             }
             if(!utils.checkAge(this.user_age)) {

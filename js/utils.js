@@ -73,7 +73,7 @@ var utils = {
         if (!str) {
             return false;
         }
-        if (str.length <2 || str.length >5) {
+        if (str.length <2 || str.length >10) {
             return false;
         }
         var reg=/^[\u4e00-\u9fa5](\s*[\u4e00-\u9fa5])*$/;

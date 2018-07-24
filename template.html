@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    <title>模板</title>
+    <title>问卷调查</title>
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
@@ -67,10 +67,15 @@
             <div class="back" @click="showPagePrev"></div>
             <div class="mid-box info-box align">
                 <h3>填写以下信息查看结果<br>并领取奖品</h3>
-                <input type="text" placeholder="姓名" v-model="user_name">
-                <input type="text" placeholder="性别" v-model="user_sex">
-                <input type="text" placeholder="年龄" v-model="user_age">
-                <input type="text" placeholder="联系方式" v-model="user_phone">
+                <input type="text" placeholder="姓名" v-model="user_name" maxlength="10">
+                <!--<input type="text" placeholder="性别" v-model="user_sex">-->
+                <select v-model="user_sex">
+                    <option value="" disabled>--请选择性别--</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                <input type="number" placeholder="年龄" v-model.number="user_age">
+                <input type="number" placeholder="联系方式" v-model.number="user_phone">
                 <input type="text" placeholder="行业" v-model="user_industry">
                 <span class="btn" @click="showRst">提交</span>
             </div>
@@ -104,6 +109,7 @@
             <div class="mid-box share-box align">
                 <img src="images/share.png" class="shareImg">
                 <img src="images/moon.png" class="moon">
+                <p>长按保存图片并分享</p>
             </div>
         </div>
 

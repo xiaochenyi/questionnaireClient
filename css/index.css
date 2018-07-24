@@ -78,9 +78,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 #page1 .button{
     position: absolute;
     left: 26.5%;
-    bottom: 30.5%;
+    bottom: 27.5%;
     width: 45%;
-    height: 7%;
+    height: 8%;
     background:#F5A623;
     border:4px solid #A26E17;
     text-align: center;
@@ -98,7 +98,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     transform: translate(-50%, -50%);
     display: inline-block;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 20px;
     color: #FFF89F;
     font-weight: 600;
     letter-spacing: 2px;
@@ -184,12 +184,22 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 0.8rem;
     padding-bottom: 5%;
 }
-.info-box input{
+.info-box input,.info-box select{
     width: 80%;
-    line-height: 2.6;
+    line-height: 2;
     margin-bottom: 0.8rem;
     color: #000000;
     text-indent: 5px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+select{
+    border: none;
+    outline: none;
+    height: 1.5rem;
+    width: 100%;
+    line-height: 2;
+    border-radius: 3px;
 }
 .info-box .btn{
     margin-top: 0.5rem;
@@ -259,8 +269,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .share-box img.shareImg{
     display: block;
     margin: 0 auto;
-    width: 95%;
-    padding: 1rem;
+    width: 85%;
+    padding: 1.2rem;
     box-sizing: border-box;
 }
 .share-box img.moon{
@@ -268,6 +278,11 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 60%;
     right: -1rem;
     top:-2rem;
+}
+.share-box p{
+    font-size: 1.2rem;
+    color: #37EDEA;
+    padding-bottom: 0.5rem;
 }
 
 .back{
@@ -277,6 +292,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 0;
     border:15px solid transparent;
     border-right-color: #959595;
+    z-index: 33;
 }
 .mid-box{
     position: absolute;
